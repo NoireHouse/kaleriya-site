@@ -1,33 +1,20 @@
-import { useEffect, useRef } from 'react'
-import { sections } from '../content'
+import { motion, useScroll, useReducedMotion } from 'motion/react'
+import { sections, type Tone } from '../content'
 
-/** Вертикальная шкала глубины: где вы на пути погружения. Только на широких экранах. */
-export default function DepthRail({ active }: { active: string }) {
-  const ref = useRef<HTMLElement>(null)
-
-  useEffect(() => {
-    let frame = 0
-    const update = () => {
-      const max = document.documentElement.scrollHeight - window.innerHeight
-      ref.current?.style.setProperty('--depth', String(max > 0 ? window.scrollY / max : 0))
-      frame = 0
-    }
-    const onScroll = () => {
-      if (!frame) frame = requestAnimationFrame(update)
-    }
-    update()
-    window.addEventListener('scroll', onScroll, { passive: true })
-    return () => window.removeEventListener('scroll', onScroll)
-  }, [])
-
-  const tone = sections.find((s) => s.id === active)?.tone ?? 'light'
+/** Шкала глубины: где вы на пути погружения. Прогресс берём из useScroll, без слушателя scroll. */
+export default function DepthRail({ active, tone }: { active: string; tone: Tone }) {
+  const { scrollYProgress } = useScroll()
+  const reduce = useReducedMotion()
 
   return (
-    <nav ref={ref} className={`rail rail--${tone}`} aria-label="Разделы страницы">
+    <nav className={`rail rail--${tone}`} aria-label="Разделы страницы">
+      <div className="rail__track" aria-hidden="true">
+        <motion.div className="rail__fill" style={{ scaleY: reduce ? 1 : scrollYProgress }} />
+      </div>
       <ol>
         {sections.map((s) => (
           <li key={s.id}>
-            <a href={`#${s.id}`} aria-current={s.id === active ? 'true' : undefined}>
+            <a href={`#${s.id}`} aria-current={s.id === active ? 'location' : undefined}>
               <span className="rail__label">{s.label}</span>
             </a>
           </li>

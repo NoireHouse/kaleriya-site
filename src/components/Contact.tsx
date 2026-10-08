@@ -1,12 +1,13 @@
+import { InstagramLogo, Phone, TelegramLogo, type Icon } from '@phosphor-icons/react'
 import { content, contacts, type Contacts } from '../content'
 
-type Link = { label: string; value: string; href: string }
+type Link = { label: string; href: string; icon: Icon }
 
 function contactLinks(c: Contacts): Link[] {
   const links: Link[] = []
-  if (c.telegram) links.push({ label: 'Telegram', value: `@${c.telegram}`, href: `https://t.me/${c.telegram}` })
-  if (c.phone) links.push({ label: 'Телефон', value: c.phone, href: `tel:${c.phone.replace(/[^+\d]/g, '')}` })
-  if (c.instagram) links.push({ label: 'Instagram', value: `@${c.instagram}`, href: `https://instagram.com/${c.instagram}` })
+  if (c.telegram) links.push({ label: `Telegram @${c.telegram}`, href: `https://t.me/${c.telegram}`, icon: TelegramLogo })
+  if (c.phone) links.push({ label: c.phone, href: `tel:${c.phone.replace(/[^+\d]/g, '')}`, icon: Phone })
+  if (c.instagram) links.push({ label: `Instagram @${c.instagram}`, href: `https://instagram.com/${c.instagram}`, icon: InstagramLogo })
   return links
 }
 
@@ -20,16 +21,17 @@ export default function Contact() {
         <p>{contact.text}</p>
         {links.length > 0 ? (
           <ul className="contact__links">
-            {links.map((l) => (
-              <li key={l.label}>
-                <a className="btn" href={l.href} target="_blank" rel="noopener noreferrer">
-                  {l.label}: {l.value}
+            {links.map(({ label, href, icon: Glyph }) => (
+              <li key={href}>
+                <a className="btn" href={href} target="_blank" rel="noopener noreferrer">
+                  <Glyph size={22} weight="light" aria-hidden="true" />
+                  {label}
                 </a>
               </li>
             ))}
           </ul>
         ) : (
-          <p className="contact__placeholder" role="status">{contact.placeholder}</p>
+          <p className="contact__empty" role="status">{contact.empty}</p>
         )}
       </div>
     </section>

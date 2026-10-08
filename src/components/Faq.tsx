@@ -1,19 +1,20 @@
 import { content } from '../content'
 
+/** Короткие ответы видны сразу: сетка вопрос-ответ вместо аккордеона */
 export default function Faq() {
   const { faq } = content
   return (
     <section className="faq" id="faq">
-      <div className="container faq__inner">
+      <div className="container">
         <h2>{faq.title}</h2>
-        <div className="faq__list">
+        <dl className="faq__grid">
           {faq.items.map((item) => (
-            <details key={item.q}>
-              <summary>{item.q}</summary>
-              <p>{item.a}</p>
-            </details>
+            <div key={item.q} className="faq__item">
+              <dt>{item.q}</dt>
+              <dd>{item.a}</dd>
+            </div>
           ))}
-        </div>
+        </dl>
       </div>
     </section>
   )

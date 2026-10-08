@@ -7,7 +7,7 @@ export default function BreathCircle({ photo }: { photo: Photo }) {
     <figure className="breath">
       <div className="breath__ring" aria-hidden="true" />
       <div className="breath__disc">
-        <img src={photo.src} alt={photo.alt} width={900} height={1200} />
+        <img src={photo.src} alt={photo.alt} width={900} height={1200} decoding="async" />
       </div>
       <figcaption className="breath__cue" aria-hidden="true">
         <span className="breath__in">{breath.inhale}</span>

@@ -5,7 +5,9 @@
 **Сайт:** https://noirehouse.github.io/kaleriya-site/
 
 ## Стек
-React 18 + TypeScript + Vite. Стили: обычный CSS с переменными (`src/styles.css`).
+React 18 + TypeScript + Vite. Стили: CSS с токенами светлой и тёмной темы (`src/styles.css`).
+Анимации: Motion. Иконки: Phosphor. Шрифты (Unbounded, Golos Text) подключены локально через Fontsource.
+Дизайн проверяется по скиллам taste-skill (design-taste-frontend, redesign-existing-projects).
 
 ## Где что
 | Файл | Что внутри |

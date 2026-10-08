@@ -1,5 +1,7 @@
 import { content } from '../content'
+import CtaButton from './CtaButton'
 
+/** Дуга сверху: поверхность воды, через которую страница уходит в глубину */
 export default function Offer() {
   const { offer } = content
   return (
@@ -10,7 +12,7 @@ export default function Offer() {
         <ol className="offer__steps">
           {offer.steps.map((s) => <li key={s}>{s}</li>)}
         </ol>
-        <a className="btn" href="#contact">{content.ctaShort}</a>
+        <CtaButton />
       </div>
     </section>
   )

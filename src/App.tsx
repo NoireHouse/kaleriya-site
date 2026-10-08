@@ -5,7 +5,8 @@ import DepthRail from './components/DepthRail'
 import Hero from './components/Hero'
 import About from './components/About'
 import Practice from './components/Practice'
-import Journey from './components/Journey'
+import Audience from './components/Audience'
+import ClassFlow from './components/ClassFlow'
 import Formats from './components/Formats'
 import Offer from './components/Offer'
 import Faq from './components/Faq'
@@ -15,18 +16,19 @@ const ids = sections.map((s) => s.id)
 
 export default function App() {
   const active = useActiveSection(ids)
-  const tone = sections.find((s) => s.id === active)?.tone ?? 'light'
+  const tone = sections.find((s) => s.id === active)?.tone ?? 'surface'
 
   return (
     <>
       <a className="skip-link" href="#main">К содержанию</a>
       <Header tone={tone} />
-      <DepthRail active={active} />
+      <DepthRail active={active} tone={tone} />
       <main id="main">
         <Hero />
         <About />
         <Practice />
-        <Journey />
+        <Audience />
+        <ClassFlow />
         <Formats />
         <Offer />
         <Faq />
