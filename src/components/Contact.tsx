@@ -1,29 +1,31 @@
 import { InstagramLogo, Phone, TelegramLogo, type Icon } from '@phosphor-icons/react'
-import { content, contacts, type Contacts } from '../content'
+import { contacts, content, telHref } from '../content'
 
-type Link = { label: string; href: string; icon: Icon }
+type Link = { label: string; aria?: string; href: string; icon: Icon; external: boolean }
 
-function contactLinks(c: Contacts): Link[] {
+function contactLinks(): Link[] {
   const links: Link[] = []
-  if (c.telegram) links.push({ label: `Telegram @${c.telegram}`, href: `https://t.me/${c.telegram}`, icon: TelegramLogo })
-  if (c.phone) links.push({ label: c.phone, href: `tel:${c.phone.replace(/[^+\d]/g, '')}`, icon: Phone })
-  if (c.instagram) links.push({ label: `Instagram @${c.instagram}`, href: `https://instagram.com/${c.instagram}`, icon: InstagramLogo })
+  if (contacts.phone) links.push({ label: contacts.phone, aria: content.contact.phoneAria, href: telHref(contacts.phone), icon: Phone, external: false })
+  if (contacts.telegram) links.push({ label: `Telegram @${contacts.telegram}`, href: `https://t.me/${contacts.telegram}`, icon: TelegramLogo, external: true })
+  if (contacts.instagram) links.push({ label: `Instagram @${contacts.instagram}`, href: `https://instagram.com/${contacts.instagram}`, icon: InstagramLogo, external: true })
   return links
 }
 
 export default function Contact() {
   const { contact } = content
-  const links = contactLinks(contacts)
+  const links = contactLinks()
   return (
     <section className="contact" id="contact">
       <div className="container contact__inner">
+        {/* Тот же круг, что на первом экране, но в покое: путешествие завершилось тишиной */}
+        <div className="contact__ring" aria-hidden="true" />
         <h2>{contact.title}</h2>
         <p>{contact.text}</p>
         {links.length > 0 ? (
           <ul className="contact__links">
-            {links.map(({ label, href, icon: Glyph }) => (
+            {links.map(({ label, aria, href, icon: Glyph, external }) => (
               <li key={href}>
-                <a className="btn" href={href} target="_blank" rel="noopener noreferrer">
+                <a className="btn" href={href} aria-label={aria} {...(external ? { target: '_blank', rel: 'noopener noreferrer' } : {})}>
                   <Glyph size={22} weight="light" aria-hidden="true" />
                   {label}
                 </a>

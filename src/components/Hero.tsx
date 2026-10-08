@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from 'motion/react'
-import { content } from '../content'
+import { content, photos } from '../content'
 import BreathCircle from './BreathCircle'
 import CtaButton from './CtaButton'
 
@@ -30,7 +30,7 @@ export default function Hero() {
             <a className="text-link" href={hero.secondary.href}>{hero.secondary.label}</a>
           </motion.div>
         </div>
-        <BreathCircle photo={hero.photo} />
+        <BreathCircle photo={{ src: photos.hero, alt: hero.photoAlt }} />
       </div>
     </section>
   )

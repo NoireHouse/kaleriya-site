@@ -1,4 +1,4 @@
-import { content } from '../content'
+import { content, photos } from '../content'
 
 /** Фото на всю колонку и наложенная на него панель с текстом */
 export default function About() {
@@ -7,7 +7,7 @@ export default function About() {
     <section className="about" id="about">
       <div className="container about__stage">
         <figure className="about__photo">
-          <img src={about.photo.src} alt={about.photo.alt} loading="lazy" decoding="async" width={1200} height={900} />
+          <img src={photos.about} alt={about.photoAlt} loading="lazy" decoding="async" width={1200} height={900} />
         </figure>
         <article className="about__panel">
           <h2 className="about__name">

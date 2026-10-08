@@ -154,8 +154,26 @@ h3 { font-size: 1.2rem; font-weight: 400; letter-spacing: -0.01em; }
 }
 .header--surface { background: var(--header-surface); color: var(--ink); }
 .header--depth { background: var(--header-depth); color: var(--foam); }
-.header__inner { display: flex; align-items: center; justify-content: space-between; min-height: 68px; }
+.header__inner { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 68px; }
 .header__brand { font-family: var(--font-display); font-weight: 400; font-size: 1.1rem; letter-spacing: -0.01em; text-decoration: none; }
+.header__actions { display: flex; align-items: center; gap: 8px; }
+.lang-switch {
+  display: inline-grid; place-items: center; min-width: 44px; min-height: 44px; padding: 0 10px; border-radius: 999px;
+  font-size: 0.85rem; font-weight: 600; letter-spacing: 0.04em; text-decoration: none;
+  border: 1px solid currentColor; opacity: 0.8; transition: opacity 0.2s var(--ease), background-color 0.2s var(--ease);
+}
+.lang-switch:hover { opacity: 1; }
+/* На экранах уже 360px переключатель языка живёт только в подвале, чтобы шапка не ломалась */
+@media (max-width: 419px) {
+  .header__inner { gap: 8px; }
+  .header__brand { font-size: 0.95rem; }
+  .header__actions { gap: 6px; }
+  .header .btn--small { padding: 8px 12px; font-size: 0.82rem; }
+}
+@media (max-width: 359px) {
+  .header .lang-switch { display: none; }
+  .header .btn--small { padding: 8px 14px; font-size: 0.85rem; }
+}
 
 /* ---------- Шкала глубины (широкие экраны) ---------- */
 .rail { display: none; }
@@ -319,7 +337,8 @@ h3 { font-size: 1.2rem; font-weight: 400; letter-spacing: -0.01em; }
 /* ---------- Ход занятия: таймлайн погружения ---------- */
 .flow-section { background: linear-gradient(180deg, var(--s4), var(--s5)); padding: var(--pad-y) 0; }
 .flow-section__head { display: flex; align-items: center; justify-content: space-between; gap: 32px; }
-.flow-section__head h2 { margin-bottom: 0; }
+.flow-section__head h2 { margin-bottom: 0.3em; }
+.flow-section__duration { margin: 0; font-weight: 600; color: var(--ink-soft); }
 .flow-section__photo { flex: none; width: clamp(96px, 18vw, 200px); aspect-ratio: 1; border-radius: 50%; overflow: hidden; }
 .flow-section__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 55% 40%; }
 
@@ -351,9 +370,14 @@ h3 { font-size: 1.2rem; font-weight: 400; letter-spacing: -0.01em; }
 .formats__name { font-size: clamp(2.2rem, 5vw, 3.6rem); letter-spacing: -0.05em; margin-bottom: 0.3em; }
 .formats__item > p { color: var(--ink-soft); max-width: 30ch; }
 .formats__facts { margin: 28px 0 0; border-top: 1px solid var(--line); }
-.formats__facts div { display: flex; justify-content: space-between; gap: 16px; padding-top: 14px; }
+.formats__facts div { display: grid; gap: 2px; padding-top: 16px; }
 .formats__facts dt { font-weight: 600; }
-.formats__facts dd { margin: 0; text-align: right; }
+.formats__facts dd { margin: 0; }
+.formats__link { display: inline-flex; align-items: center; min-height: 44px; padding: 0; font-size: 0.95rem; }
+.formats__facts dd .formats__link { display: flex; width: fit-content; }
+@media (min-width: 600px) {
+  .formats__facts div { grid-template-columns: 7.5rem 1fr; gap: 16px; }
+}
 .is-pending { color: var(--ink-soft); }
 
 /* ---------- Глубина: оффер, вопросы, запись ---------- */
@@ -399,11 +423,14 @@ h3 { font-size: 1.2rem; font-weight: 400; letter-spacing: -0.01em; }
   padding: var(--pad-y) 0 calc(var(--pad-y) + 16px); text-align: center; overflow: hidden;
 }
 .contact__inner { position: relative; max-width: 760px; }
-/* Тот же круг, что на первом экране, но в покое: путешествие завершилось тишиной */
-.contact__inner::before {
-  content: ''; position: absolute; left: 50%; top: 50%; width: min(560px, 120vw); aspect-ratio: 1;
-  transform: translate(-50%, -50%); border-radius: 50%;
-  border: 1px solid rgba(238, 161, 60, 0.35); pointer-events: none;
+/* Круг дыхания в покое: стоит над заголовком и не пересекает текст */
+.contact__ring {
+  width: clamp(72px, 12vw, 112px); aspect-ratio: 1; margin: 0 auto 36px; border-radius: 50%;
+  border: 1.5px solid var(--accent); display: grid; place-items: center;
+}
+.contact__ring::after {
+  content: ''; width: 64%; aspect-ratio: 1; border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, rgba(238, 161, 60, 0.55), rgba(19, 74, 80, 0.9));
 }
 .contact h2 { margin-left: auto; margin-right: auto; }
 .contact p { color: var(--foam-soft); }
@@ -414,3 +441,4 @@ h3 { font-size: 1.2rem; font-weight: 400; letter-spacing: -0.01em; }
 }
 
 .footer { background: var(--d4); padding: 32px 0 44px; font-size: 0.9rem; color: var(--foam-soft); }
+.footer__inner { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 16px; }

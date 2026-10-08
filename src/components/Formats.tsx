@@ -1,5 +1,5 @@
 import { MapPin, VideoCamera } from '@phosphor-icons/react'
-import { content, contacts } from '../content'
+import { content } from '../content'
 
 const icons = { place: MapPin, online: VideoCamera }
 
@@ -21,7 +21,14 @@ export default function Formats() {
                   {f.rows.map((r) => (
                     <div key={r.label}>
                       <dt>{r.label}</dt>
-                      <dd className={contacts[r.key] ? undefined : 'is-pending'}>{contacts[r.key] ?? formats.pending}</dd>
+                      <dd className={r.value ? undefined : 'is-pending'}>
+                        {r.value ?? formats.pending}
+                        {r.link && (
+                          <a className="text-link formats__link" href={r.link.href} target="_blank" rel="noopener noreferrer">
+                            {r.link.label}
+                          </a>
+                        )}
+                      </dd>
                     </div>
                   ))}
                 </dl>

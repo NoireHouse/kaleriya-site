@@ -1,7 +1,7 @@
 import { Footprints, PersonSimpleTaiChi, Plant, Wind, type Icon } from '@phosphor-icons/react'
-import { content } from '../content'
+import { content, photos, type Content } from '../content'
 
-const icons: Record<(typeof content.practice.benefits)[number]['icon'], Icon> = {
+const icons: Record<Content['practice']['benefits'][number]['icon'], Icon> = {
   flex: PersonSimpleTaiChi,
   safe: Footprints,
   breath: Wind,
@@ -23,7 +23,7 @@ export default function Practice() {
             <p>{hatha.text}</p>
           </article>
           <figure className="bento__cell bento__cell--photo">
-            <img src={practice.photo.src} alt={practice.photo.alt} loading="lazy" decoding="async" width={1200} height={900} />
+            <img src={photos.practice} alt={practice.photoAlt} loading="lazy" decoding="async" width={1200} height={900} />
           </figure>
           <article className="bento__cell bento__cell--purna">
             <h3 className="bento__word">{purna.name}</h3>

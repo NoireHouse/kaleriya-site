@@ -1,5 +1,5 @@
 import { motion, useReducedMotion } from 'motion/react'
-import { content } from '../content'
+import { content, photos } from '../content'
 
 /** Ход занятия: настоящая последовательность. Узлы растут и темнеют, как погружение, и проявляются по порядку. */
 export default function ClassFlow() {
@@ -10,9 +10,12 @@ export default function ClassFlow() {
     <section className="flow-section" id="class">
       <div className="container">
         <div className="flow-section__head">
-          <h2>{classFlow.title}</h2>
+          <div>
+            <h2>{classFlow.title}</h2>
+            <p className="flow-section__duration">{classFlow.duration}</p>
+          </div>
           <figure className="flow-section__photo">
-            <img src={classFlow.photo.src} alt={classFlow.photo.alt} loading="lazy" decoding="async" width={1200} height={900} />
+            <img src={photos.classFlow} alt={classFlow.photoAlt} loading="lazy" decoding="async" width={1200} height={900} />
           </figure>
         </div>
         <ol className="flow">

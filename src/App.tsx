@@ -20,7 +20,7 @@ export default function App() {
 
   return (
     <>
-      <a className="skip-link" href="#main">К содержанию</a>
+      <a className="skip-link" href="#main">{content.skipLink}</a>
       <Header tone={tone} />
       <DepthRail active={active} tone={tone} />
       <main id="main">
@@ -35,7 +35,12 @@ export default function App() {
         <Contact />
       </main>
       <footer className="footer">
-        <div className="container">{content.footer}</div>
+        <div className="container footer__inner">
+          <span>{content.footer}</span>
+          <a className="lang-switch" href={content.langSwitch.href} hrefLang={content.locale === 'ru' ? 'uk' : 'ru'} aria-label={content.langSwitch.ariaLabel}>
+            {content.langSwitch.label}
+          </a>
+        </div>
       </footer>
     </>
   )

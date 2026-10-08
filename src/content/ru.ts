@@ -1,62 +1,35 @@
-// Весь текст сайта. Источник правды: context/materials/landing.md в приватном репозитории знаний.
-// Меняешь текст: сначала там, потом здесь (1:1). Длинные тире в тексте не используем.
+// Русская версия. Источник правды: context/materials/landing.md (1:1). Длинные тире не используем.
+import { contacts, formatSchedule, onlinePlatforms, scheduleOffline, scheduleOnline, studio } from './shared'
+import type { Content } from './types'
 
-export type Contacts = {
-  /** username без @, например "kaleriya_yoga" */
-  telegram: string | null
-  /** в международном формате, например "+380 00 000 00 00" */
-  phone: string | null
-  instagram: string | null
-  studio: string | null
-  scheduleOffline: string | null
-  scheduleOnline: string | null
-}
+const days = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
 
-export type Photo = { src: string; alt: string }
-
-/** Глубина секции: светлая поверхность или тёмная глубина. Управляет шапкой и шкалой. */
-export type Tone = 'surface' | 'depth'
-
-const photo = (file: string, alt: string): Photo => ({
-  src: `${import.meta.env.BASE_URL}photos/${file}`,
-  alt,
-})
-
-export const contacts: Contacts = {
-  telegram: null,
-  phone: null,
-  instagram: null,
-  studio: null,
-  scheduleOffline: null,
-  scheduleOnline: null,
-}
-
-/** Порядок секций = путь погружения. Используется шкалой глубины и шапкой. */
-export const sections: { id: string; label: string; tone: Tone }[] = [
-  { id: 'top', label: 'Начало', tone: 'surface' },
-  { id: 'about', label: 'Обо мне', tone: 'surface' },
-  { id: 'practice', label: 'Практика', tone: 'surface' },
-  { id: 'audience', label: 'Для кого', tone: 'surface' },
-  { id: 'class', label: 'Занятие', tone: 'surface' },
-  { id: 'formats', label: 'Форматы', tone: 'surface' },
-  { id: 'offer', label: 'Первое занятие', tone: 'depth' },
-  { id: 'faq', label: 'Вопросы', tone: 'depth' },
-  { id: 'contact', label: 'Запись', tone: 'depth' },
-]
-
-/** Единая подпись для всех кнопок записи: одно намерение, одна формулировка */
-export const cta = { label: 'Записаться бесплатно', href: '#contact' }
-
-export const content = {
+export const ru: Content = {
+  locale: 'ru',
   brand: 'Калерия',
+  skipLink: 'К содержанию',
+  railLabel: 'Разделы страницы',
+  langSwitch: { label: 'UA', href: 'uk/', ariaLabel: 'Українська версія сайту' },
+  cta: { label: 'Записаться бесплатно', href: '#contact' },
+  sections: [
+    { id: 'top', label: 'Начало', tone: 'surface' },
+    { id: 'about', label: 'Обо мне', tone: 'surface' },
+    { id: 'practice', label: 'Практика', tone: 'surface' },
+    { id: 'audience', label: 'Для кого', tone: 'surface' },
+    { id: 'class', label: 'Занятие', tone: 'surface' },
+    { id: 'formats', label: 'Форматы', tone: 'surface' },
+    { id: 'offer', label: 'Первое занятие', tone: 'depth' },
+    { id: 'faq', label: 'Вопросы', tone: 'depth' },
+    { id: 'contact', label: 'Запись', tone: 'depth' },
+  ],
 
   hero: {
     kicker: 'Хатха и Пурна йога для начинающих',
     title: 'Путешествие вглубь себя',
-    subtitle: 'Мягкая практика: гибкость без боли, спокойное дыхание и время для себя. Очно в Харькове и онлайн.',
+    subtitle: 'Мягкая йога в мини-группах до 5 человек: гибкость без боли и спокойное дыхание. Харьков и онлайн.',
     secondary: { href: '#class', label: 'Как проходит занятие' },
     breath: { inhale: 'вдох', exhale: 'выдох', still: 'дышите спокойно' },
-    photo: photo('ganga-rock-namaste.jpg', 'Калерия в позе лотоса со сложенными ладонями на камне у Ганга, позади горы Гималаев'),
+    photoAlt: 'Калерия в позе лотоса со сложенными ладонями на камне у Ганга, позади горы Гималаев',
   },
 
   about: {
@@ -71,7 +44,7 @@ export const content = {
       'Все эти годы я регулярно обучалась и проходила ретриты в самом сердце йоги, на берегах Ганга.',
       'Моя задача: чтобы на занятии вам было безопасно и спокойно, а практика постепенно становилась вашей.',
     ],
-    photo: photo('ganga-meditation-with-sadhu.jpg', 'Калерия медитирует на берегу Ганга рядом с индийским садху'),
+    photoAlt: 'Калерия медитирует на берегу Ганга рядом с индийским садху',
   },
 
   practice: {
@@ -94,8 +67,8 @@ export const content = {
       { icon: 'safe', text: 'Базовые асаны и безопасная техника' },
       { icon: 'breath', text: 'Осознанное дыхание и меньше стресса' },
       { icon: 'level', text: 'Подходит для любого уровня подготовки' },
-    ] as const,
-    photo: photo('himalaya-mural-split-horizontal.jpg', 'Калерия в поперечном шпагате у стены с муралами в Ришикеше'),
+    ],
+    photoAlt: 'Калерия в поперечном шпагате у стены с муралами в Ришикеше',
   },
 
   audience: {
@@ -110,13 +83,14 @@ export const content = {
 
   classFlow: {
     title: 'Как проходит занятие',
+    duration: 'Занятие длится 1,5 часа',
     steps: [
       { name: 'Настройка и дыхание', text: 'Замедляемся и приходим в тело.' },
       { name: 'Мягкая разминка', text: 'Готовим суставы и мышцы.' },
       { name: 'Асаны', text: 'Базовые позы в своём темпе, с подсказками по технике.' },
       { name: 'Расслабление', text: 'Шавасана и тишина, чтобы закрепить состояние.' },
     ],
-    photo: photo('sunset-sea-acro-silhouette.jpg', 'Силуэт акро-йоги на фоне заката над морем'),
+    photoAlt: 'Силуэт акро-йоги на фоне заката над морем',
   },
 
   formats: {
@@ -126,25 +100,32 @@ export const content = {
       {
         icon: 'place',
         name: 'Харьков',
-        text: 'Очно, в небольшой группе, с вниманием к каждому.',
+        text: 'Очно, в мини-группе от 2 до 5 человек, с вниманием к каждому.',
         rows: [
-          { label: 'Студия', key: 'studio' },
-          { label: 'Расписание', key: 'scheduleOffline' },
+          {
+            label: 'Адрес',
+            value: 'ул. Дмитра Антоненка, 49 (м. Ботанический сад)',
+            link: { href: studio.mapHref, label: 'Открыть на карте' },
+          },
+          { label: 'Расписание', value: formatSchedule(scheduleOffline, days) },
         ],
       },
       {
         icon: 'online',
         name: 'Онлайн',
-        text: 'Из любого города по видеосвязи. Практика у вас дома.',
-        rows: [{ label: 'Расписание', key: 'scheduleOnline' }],
+        text: 'Из любого города, практика у вас дома.',
+        rows: [
+          { label: 'Платформы', value: onlinePlatforms.join(', ') },
+          { label: 'Расписание', value: formatSchedule(scheduleOnline, days) },
+        ],
       },
-    ] satisfies { icon: 'place' | 'online'; name: string; text: string; rows: { label: string; key: keyof Contacts }[] }[],
+    ],
   },
 
   offer: {
     title: 'Первое занятие бесплатно',
-    text: 'Попробуйте практику без обязательств и почувствуйте, ваше ли это.',
-    steps: ['Напишите мне', 'Выберите формат и время', 'Приходите на коврик'],
+    text: 'Очно и онлайн. Попробуйте практику без обязательств и почувствуйте, ваше ли это.',
+    steps: ['Позвоните или напишите', 'Выберите формат и время', 'Приходите на коврик'],
   },
 
   faq: {
@@ -153,7 +134,7 @@ export const content = {
       { q: 'Я совсем не гибкий(ая). Мне можно?', a: 'Да. Гибкость приходит с практикой, начинаем с того уровня, где вы сейчас.' },
       { q: 'Что взять с собой?', a: 'Удобную одежду, не сковывающую движений, и воду. Про коврик подскажу при записи.' },
       { q: 'Есть ли ограничения по здоровью?', a: 'При травмах, хронических заболеваниях или беременности посоветуйтесь с врачом и расскажите мне до занятия. Подберём безопасный вариант.' },
-      { q: 'Как проходят онлайн-занятия?', a: 'Вы подключаетесь из дома по видеосвязи. Детали пришлю при записи.' },
+      { q: 'Как проходят онлайн-занятия?', a: `Вы подключаетесь из дома через ${onlinePlatforms.join(', ')}. Детали пришлю при записи.` },
       { q: 'Сколько стоят занятия?', a: 'Первое занятие бесплатно. О стоимости и абонементах расскажу при записи.' },
       { q: 'Можно ли есть перед практикой?', a: 'Лучше лёгкий приём пищи за 1,5-2 часа до занятия.' },
     ],
@@ -161,8 +142,9 @@ export const content = {
 
   contact: {
     title: 'Начните своё путешествие',
-    text: 'Напишите, чтобы записаться на бесплатное первое занятие или задать вопрос.',
+    text: 'Позвоните или напишите, чтобы записаться на бесплатное первое занятие или задать вопрос.',
     empty: 'Контакты для записи появятся здесь совсем скоро.',
+    phoneAria: contacts.phone ? `Позвонить по номеру ${contacts.phone}` : '',
   },
 
   footer: '© 2026 Калерия. Хатха и Пурна йога в Харькове и онлайн.',
