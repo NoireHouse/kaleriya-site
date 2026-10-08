@@ -28,6 +28,7 @@
   --gutter: 16px;
   --max: 1180px;
   --pad-y: clamp(80px, 12vw, 160px);
+  --arc: clamp(56px, 10vw, 120px);
   color-scheme: light;
 }
 
@@ -135,7 +136,7 @@ h3 { font-size: 1.25rem; font-weight: 400; letter-spacing: -0.01em; }
 /* ---------- Первый экран ---------- */
 .hero {
   background: linear-gradient(180deg, var(--mist), var(--mist-2));
-  padding: calc(64px + clamp(40px, 8vw, 96px)) 0 var(--pad-y);
+  padding: calc(64px + clamp(24px, 8vw, 96px)) 0 var(--pad-y);
 }
 .hero__grid { display: grid; gap: 48px; align-items: center; }
 .hero__kicker { color: var(--ink-soft); font-weight: 500; margin-bottom: 1.4em; }
@@ -154,10 +155,10 @@ h3 { font-size: 1.25rem; font-weight: 400; letter-spacing: -0.01em; }
 
 /* Дышащий круг: вдох 4 с (0–40%), выдох 6 с (40–100%) */
 .breath {
-  position: relative; width: min(100%, 460px); aspect-ratio: 1;
-  justify-self: center; margin-bottom: 40px;
+  position: relative; width: min(76%, 320px); aspect-ratio: 1;
+  justify-self: center; margin-bottom: 40px; order: -1;
 }
-@media (min-width: 960px) { .breath { justify-self: end; } }
+@media (min-width: 960px) { .breath { width: min(100%, 460px); justify-self: end; order: 0; } }
 .breath__ring,
 .breath__disc { position: absolute; border-radius: 50%; }
 .breath__ring {
@@ -287,7 +288,7 @@ h3 { font-size: 1.25rem; font-weight: 400; letter-spacing: -0.01em; }
 /* ---------- Форматы ---------- */
 .formats {
   background: linear-gradient(180deg, var(--jade), var(--jade-2));
-  padding: var(--pad-y) 0 calc(var(--pad-y) + 120px);
+  padding: var(--pad-y) 0 calc(var(--pad-y) + var(--arc));
 }
 .formats__pair { display: grid; gap: 56px; margin-top: 48px; }
 @media (min-width: 900px) { .formats__pair { grid-template-columns: 1fr 1fr; gap: 80px; } }
@@ -307,9 +308,9 @@ h3 { font-size: 1.25rem; font-weight: 400; letter-spacing: -0.01em; }
 
 /* Дуга сверху — линия горизонта / поверхность воды, через которую мы погружаемся */
 .offer {
-  position: relative; margin-top: -120px;
+  position: relative; margin-top: calc(-1 * var(--arc));
   background: linear-gradient(180deg, var(--deep), var(--abyss));
-  border-radius: 50% 50% 0 0 / 120px 120px 0 0;
+  border-radius: 50% 50% 0 0 / var(--arc) var(--arc) 0 0;
   padding: calc(var(--pad-y) + 40px) 0 var(--pad-y);
   text-align: center;
 }
