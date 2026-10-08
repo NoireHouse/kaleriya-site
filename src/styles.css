@@ -140,7 +140,7 @@ h3 { font-size: 1.25rem; font-weight: 400; letter-spacing: -0.01em; }
 .hero__grid { display: grid; gap: 48px; align-items: center; }
 .hero__kicker { color: var(--ink-soft); font-weight: 500; margin-bottom: 1.4em; }
 .hero__title {
-  font-size: clamp(2.6rem, 7.4vw, 5.9rem);
+  font-size: clamp(2.3rem, 5vw, 4.6rem);
   font-weight: 300; letter-spacing: -0.035em; line-height: 1.02;
   margin-bottom: 0.45em;
 }
@@ -149,7 +149,7 @@ h3 { font-size: 1.25rem; font-weight: 400; letter-spacing: -0.01em; }
 .hero__facts { font-size: 0.95rem; color: var(--ink-soft); margin: 0; }
 @media (min-width: 960px) {
   .hero { min-height: 100svh; display: flex; align-items: center; }
-  .hero__grid { grid-template-columns: 1.25fr 0.75fr; gap: 56px; }
+  .hero__grid { grid-template-columns: minmax(0, 1.15fr) minmax(0, 0.85fr); gap: 56px; }
 }
 
 /* Дышащий круг: вдох 4 с (0–40%), выдох 6 с (40–100%) */
