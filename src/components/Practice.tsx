@@ -3,22 +3,24 @@ import { content } from '../content'
 export default function Practice() {
   const { practice } = content
   return (
-    <section className="section section--tint" id="practice">
+    <section className="practice" id="practice">
       <div className="container">
-        <p className="eyebrow">{practice.eyebrow}</p>
         <h2>{practice.title}</h2>
-        <div className="cards">
+        <div className="practice__pair">
           {practice.styles.map((s) => (
-            <article key={s.name} className="card">
-              <h3>{s.name}</h3>
+            <article key={s.name} className="practice__style">
+              <h3 className="practice__name">{s.name}</h3>
+              <p className="practice__meaning">{s.meaning}</p>
               <p>{s.text}</p>
             </article>
           ))}
         </div>
-        <h3 className="subhead">{practice.benefitsTitle}</h3>
-        <ul className="benefits">
-          {practice.benefits.map((b) => <li key={b}>{b}</li>)}
-        </ul>
+        <div className="practice__benefits">
+          <h3>{practice.benefitsTitle}</h3>
+          <ul className="dots">
+            {practice.benefits.map((b) => <li key={b}>{b}</li>)}
+          </ul>
+        </div>
       </div>
     </section>
   )

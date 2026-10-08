@@ -14,10 +14,10 @@ export default function Contact() {
   const { contact } = content
   const links = contactLinks(contacts)
   return (
-    <section className="section contact" id="contact">
-      <div className="container narrow center">
+    <section className="contact" id="contact">
+      <div className="container contact__inner">
         <h2>{contact.title}</h2>
-        <p className="lead">{contact.text}</p>
+        <p>{contact.text}</p>
         {links.length > 0 ? (
           <ul className="contact__links">
             {links.map((l) => (

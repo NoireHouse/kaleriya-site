@@ -3,11 +3,10 @@ import { content } from '../content'
 export default function Faq() {
   const { faq } = content
   return (
-    <section className="section" id="faq">
-      <div className="container narrow">
-        <p className="eyebrow">{faq.eyebrow}</p>
+    <section className="faq" id="faq">
+      <div className="container faq__inner">
         <h2>{faq.title}</h2>
-        <div className="faq">
+        <div className="faq__list">
           {faq.items.map((item) => (
             <details key={item.q}>
               <summary>{item.q}</summary>
