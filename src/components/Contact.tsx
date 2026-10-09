@@ -1,9 +1,10 @@
 import { InstagramLogo, Phone, TelegramLogo, type Icon } from '@phosphor-icons/react'
-import { contacts, content, telHref } from '../content'
+import { contacts, telHref, type Content } from '../content'
+import { useContent } from '../i18n/LocaleContext'
 
 type Link = { label: string; aria?: string; href: string; icon: Icon; external: boolean }
 
-function contactLinks(): Link[] {
+function contactLinks(content: Content): Link[] {
   const links: Link[] = []
   if (contacts.phone) links.push({ label: contacts.phone, aria: content.contact.phoneAria, href: telHref(contacts.phone), icon: Phone, external: false })
   if (contacts.telegram) links.push({ label: `Telegram @${contacts.telegram}`, href: `https://t.me/${contacts.telegram}`, icon: TelegramLogo, external: true })
@@ -12,8 +13,9 @@ function contactLinks(): Link[] {
 }
 
 export default function Contact() {
+  const content = useContent()
   const { contact } = content
-  const links = contactLinks()
+  const links = contactLinks(content)
   return (
     <section className="contact" id="contact">
       <div className="container contact__inner">

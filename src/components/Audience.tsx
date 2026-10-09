@@ -1,7 +1,8 @@
-import { content } from '../content'
+import { useContent } from '../i18n/LocaleContext'
 
 /** Липкий заголовок слева, крупные утверждения справа */
 export default function Audience() {
+  const content = useContent()
   const { audience } = content
   return (
     <section className="audience" id="audience">

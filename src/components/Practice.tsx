@@ -1,5 +1,6 @@
 import { Footprints, PersonSimpleTaiChi, Plant, Wind, type Icon } from '@phosphor-icons/react'
-import { content, photos, type Content } from '../content'
+import { photos, type Content } from '../content'
+import { useContent } from '../i18n/LocaleContext'
 
 const icons: Record<Content['practice']['benefits'][number]['icon'], Icon> = {
   flex: PersonSimpleTaiChi,
@@ -10,6 +11,7 @@ const icons: Record<Content['practice']['benefits'][number]['icon'], Icon> = {
 
 /** Бенто: две практики, фото и польза. Ровно четыре ячейки под четыре блока контента. */
 export default function Practice() {
+  const content = useContent()
   const { practice } = content
   const [hatha, purna] = practice.styles
   return (

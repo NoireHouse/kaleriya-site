@@ -1,5 +1,6 @@
 import { motion, useReducedMotion } from 'motion/react'
-import { content, photos } from '../content'
+import { photos } from '../content'
+import { useContent } from '../i18n/LocaleContext'
 import BreathCircle from './BreathCircle'
 import CtaButton from './CtaButton'
 
@@ -7,6 +8,7 @@ const ease = [0.16, 1, 0.3, 1] as const
 
 /** Единственная оркестрованная анимация страницы: текст первого экрана проявляется по очереди. */
 export default function Hero() {
+  const content = useContent()
   const { hero } = content
   const reduce = useReducedMotion()
   const item = (i: number) =>

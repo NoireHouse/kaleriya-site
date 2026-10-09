@@ -1,7 +1,9 @@
-import { content, type Photo } from '../content'
+import type { Photo } from '../content'
+import { useContent } from '../i18n/LocaleContext'
 
 /** Фото в «дышащем» круге: вдох 4 с, выдох 6 с. Без анимации при prefers-reduced-motion. */
 export default function BreathCircle({ photo }: { photo: Photo }) {
+  const content = useContent()
   const { breath } = content.hero
   return (
     <figure className="breath">

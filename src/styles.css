@@ -159,10 +159,12 @@ h3 { font-size: 1.2rem; font-weight: 400; letter-spacing: -0.01em; }
 .header__actions { display: flex; align-items: center; gap: 8px; }
 .lang-switch {
   display: inline-grid; place-items: center; min-width: 44px; min-height: 44px; padding: 0 10px; border-radius: 999px;
-  font-size: 0.85rem; font-weight: 600; letter-spacing: 0.04em; text-decoration: none;
-  border: 1px solid currentColor; opacity: 0.8; transition: opacity 0.2s var(--ease), background-color 0.2s var(--ease);
+  font: inherit; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.04em; color: inherit; cursor: pointer;
+  background: transparent; border: 1px solid currentColor; opacity: 0.8;
+  transition: opacity 0.2s var(--ease), background-color 0.2s var(--ease), transform 0.2s var(--ease);
 }
 .lang-switch:hover { opacity: 1; }
+.lang-switch:active { transform: scale(0.95); }
 /* На экранах уже 360px переключатель языка живёт только в подвале, чтобы шапка не ломалась */
 @media (max-width: 419px) {
   .header__inner { gap: 8px; }

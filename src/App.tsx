@@ -1,7 +1,9 @@
-import { content, sections } from './content'
+import { sectionIds } from './content'
+import { useContent } from './i18n/LocaleContext'
 import { useActiveSection } from './hooks/useActiveSection'
 import Header from './components/Header'
 import DepthRail from './components/DepthRail'
+import LangSwitch from './components/LangSwitch'
 import Hero from './components/Hero'
 import About from './components/About'
 import Practice from './components/Practice'
@@ -12,11 +14,10 @@ import Offer from './components/Offer'
 import Faq from './components/Faq'
 import Contact from './components/Contact'
 
-const ids = sections.map((s) => s.id)
-
 export default function App() {
-  const active = useActiveSection(ids)
-  const tone = sections.find((s) => s.id === active)?.tone ?? 'surface'
+  const content = useContent()
+  const active = useActiveSection(sectionIds)
+  const tone = content.sections.find((s) => s.id === active)?.tone ?? 'surface'
 
   return (
     <>
@@ -37,9 +38,7 @@ export default function App() {
       <footer className="footer">
         <div className="container footer__inner">
           <span>{content.footer}</span>
-          <a className="lang-switch" href={content.langSwitch.href} hrefLang={content.locale === 'ru' ? 'uk' : 'ru'} aria-label={content.langSwitch.ariaLabel}>
-            {content.langSwitch.label}
-          </a>
+          <LangSwitch />
         </div>
       </footer>
     </>

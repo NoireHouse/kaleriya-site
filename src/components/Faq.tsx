@@ -1,7 +1,8 @@
-import { content } from '../content'
+import { useContent } from '../i18n/LocaleContext'
 
 /** Короткие ответы видны сразу: сетка вопрос-ответ вместо аккордеона */
 export default function Faq() {
+  const content = useContent()
   const { faq } = content
   return (
     <section className="faq" id="faq">

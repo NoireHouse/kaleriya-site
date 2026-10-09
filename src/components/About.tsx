@@ -1,7 +1,9 @@
-import { content, photos } from '../content'
+import { photos } from '../content'
+import { useContent } from '../i18n/LocaleContext'
 
 /** Фото на всю колонку и наложенная на него панель с текстом */
 export default function About() {
+  const content = useContent()
   const { about } = content
   return (
     <section className="about" id="about">

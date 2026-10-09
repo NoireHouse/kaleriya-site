@@ -1,9 +1,10 @@
 import { MapPin, VideoCamera } from '@phosphor-icons/react'
-import { content } from '../content'
+import { useContent } from '../i18n/LocaleContext'
 
 const icons = { place: MapPin, online: VideoCamera }
 
 export default function Formats() {
+  const content = useContent()
   const { formats } = content
   return (
     <section className="formats" id="formats">

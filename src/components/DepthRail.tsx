@@ -1,13 +1,15 @@
 import { motion, useScroll, useReducedMotion } from 'motion/react'
-import { content, sections, type Tone } from '../content'
+import type { Tone } from '../content'
+import { useContent } from '../i18n/LocaleContext'
 
 /** Шкала глубины: где вы на пути погружения. Прогресс берём из useScroll, без слушателя scroll. */
 export default function DepthRail({ active, tone }: { active: string; tone: Tone }) {
   const { scrollYProgress } = useScroll()
   const reduce = useReducedMotion()
+  const { sections, railLabel } = useContent()
 
   return (
-    <nav className={`rail rail--${tone}`} aria-label={content.railLabel}>
+    <nav className={`rail rail--${tone}`} aria-label={railLabel}>
       <div className="rail__track" aria-hidden="true">
         <motion.div className="rail__fill" style={{ scaleY: reduce ? 1 : scrollYProgress }} />
       </div>

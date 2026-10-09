@@ -14,7 +14,10 @@ export type Content = {
   brand: string
   skipLink: string
   railLabel: string
-  langSwitch: { label: string; href: string; ariaLabel: string }
+  /** title и description страницы для этого языка (подставляются при переключении) */
+  meta: { title: string; description: string }
+  /** Название языка на самом языке: для подписи переключателя, который ведёт на него */
+  languageName: string
   /** Единая подпись для всех кнопок записи: одно намерение, одна формулировка */
   cta: { label: string; href: string }
   sections: Section[]

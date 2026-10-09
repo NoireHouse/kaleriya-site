@@ -1,8 +1,9 @@
-import { content } from '../content'
+import { useContent } from '../i18n/LocaleContext'
 import CtaButton from './CtaButton'
 
 /** Дуга сверху: поверхность воды, через которую страница уходит в глубину */
 export default function Offer() {
+  const content = useContent()
   const { offer } = content
   return (
     <section className="offer" id="offer">

@@ -1,8 +1,10 @@
 import { motion, useReducedMotion } from 'motion/react'
-import { content, photos } from '../content'
+import { photos } from '../content'
+import { useContent } from '../i18n/LocaleContext'
 
 /** Ход занятия: настоящая последовательность. Узлы растут и темнеют, как погружение, и проявляются по порядку. */
 export default function ClassFlow() {
+  const content = useContent()
   const { classFlow } = content
   const reduce = useReducedMotion()
 

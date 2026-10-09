@@ -1,15 +1,16 @@
-import { content, type Tone } from '../content'
+import type { Tone } from '../content'
+import { useContent } from '../i18n/LocaleContext'
 import CtaButton from './CtaButton'
+import LangSwitch from './LangSwitch'
 
 export default function Header({ tone }: { tone: Tone }) {
+  const content = useContent()
   return (
     <header className={`header header--${tone}`}>
       <div className="container header__inner">
         <a className="header__brand" href="#top">{content.brand}</a>
         <div className="header__actions">
-          <a className="lang-switch" href={content.langSwitch.href} hrefLang={content.locale === 'ru' ? 'uk' : 'ru'} aria-label={content.langSwitch.ariaLabel}>
-            {content.langSwitch.label}
-          </a>
+          <LangSwitch />
           <CtaButton size="small" />
         </div>
       </div>
