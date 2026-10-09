@@ -13,9 +13,11 @@ export const contacts = {
   /** Как показываем номер */
   phone: '+380 77 022 00 90' as string | null,
   /** username без @ */
-  telegram: null as string | null,
+  telegram: 'kalyayoga' as string | null,
   instagram: null as string | null,
 }
+
+export const telegramHref = (username: string) => `https://t.me/${username}`
 
 export const telHref = (phone: string) => `tel:${phone.replace(/[^+\d]/g, '')}`
 

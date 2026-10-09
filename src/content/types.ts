@@ -69,6 +69,6 @@ export type Content = {
   }
   offer: { title: string; text: string; steps: string[] }
   faq: { title: string; items: { q: string; a: string }[] }
-  contact: { title: string; text: string; empty: string; phoneAria: string }
+  contact: { title: string; text: string; empty: string; phoneAria: string; phoneLead: string }
   footer: string
 }
