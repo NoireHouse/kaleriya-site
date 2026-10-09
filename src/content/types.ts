@@ -9,7 +9,8 @@ export type Section = { id: string; label: string; tone: Tone }
 
 export type Content = {
   locale: Locale
-  brand: string
+  /** Короткая подпись в шапке (не бренд) */
+  siteName: string
   skipLink: string
   railLabel: string
   /** title и description страницы для этого языка (подставляются при переключении) */
@@ -65,7 +66,6 @@ export type Content = {
     address: { label: string; street: string; area: string; route: string }
     mapTitle: string
     group: { label: string; value: string; note: string }
-    online: { label: string; note: string }
   }
   offer: { title: string; text: string; steps: string[] }
   faq: { title: string; items: { q: string; a: string }[] }

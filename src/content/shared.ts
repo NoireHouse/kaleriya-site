@@ -36,9 +36,6 @@ export const scheduleOffline: { day: number; time: string }[] = [
   { day: 4, time: '08:15' },
   { day: 6, time: '10:00' },
 ]
-export const scheduleOnline: { day: number; time: string }[] = []
-
-export const onlinePlatforms = ['Zoom', 'WhatsApp', 'FaceTime']
 
 export const formatSchedule = (items: { day: number; time: string }[], days: string[]) =>
   items.length ? items.map((s) => `${days[s.day - 1]} ${s.time}`).join(', ') : null

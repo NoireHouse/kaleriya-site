@@ -9,7 +9,7 @@ export default function Header({ tone, active }: { tone: Tone; active: string })
   return (
     <header className={`header header--${tone}`}>
       <div className="container header__inner">
-        <a className="header__brand" href="#top">{content.brand}</a>
+        <a className="header__brand" href="#top">{content.siteName}</a>
         <div className="header__actions">
           <a className="header__nav" href={content.nav.href} aria-current={navCurrent ? 'location' : undefined}>
             {content.nav.label}

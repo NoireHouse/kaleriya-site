@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
-import { MapPin, NavigationArrow, Sun, SunHorizon, UsersThree, VideoCamera } from '@phosphor-icons/react'
-import { classMinutes, onlinePlatforms, scheduleOffline, studio } from '../content'
+import { MapPin, NavigationArrow, Sun, SunHorizon, UsersThree } from '@phosphor-icons/react'
+import { classMinutes, scheduleOffline, studio } from '../content'
 import { useContent } from '../i18n/LocaleContext'
 import { endTime, isEarly, nextSlotIndex } from '../lib/schedule'
 
 /**
  * Расписание и адрес: всё, что нужно человеку, пришедшему по рекомендации.
- * Неделя с ближайшим занятием (по времени Киева) и крупные карточки: адрес, карта, очно, онлайн.
+ * Неделя с ближайшим занятием (по времени Киева) и крупные карточки: адрес, карта, очно.
  */
 export default function Schedule() {
   const { schedule } = useContent()
@@ -82,15 +82,6 @@ export default function Schedule() {
             <h3 className="info-card__label">{schedule.group.label}</h3>
             <p className="info-card__value">{schedule.group.value}</p>
             <p className="info-card__note">{schedule.group.note}</p>
-          </article>
-
-          <article className="info-card info-card--online">
-            <VideoCamera className="info-card__icon" size={32} weight="light" aria-hidden="true" />
-            <h3 className="info-card__label">{schedule.online.label}</h3>
-            <ul className="info-card__chips">
-              {onlinePlatforms.map((p) => <li key={p}>{p}</li>)}
-            </ul>
-            <p className="info-card__note">{schedule.online.note}</p>
           </article>
         </div>
       </div>

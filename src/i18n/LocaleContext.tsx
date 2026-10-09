@@ -5,7 +5,7 @@ const STORAGE_KEY = 'kaleriya-locale'
 
 const isLocale = (v: unknown): v is Locale => typeof v === 'string' && (locales as string[]).includes(v)
 
-/** Порядок выбора языка: ссылка ?lang= → выбор из прошлого визита → язык браузера → русский */
+/** Порядок выбора языка: ссылка ?lang= → выбор из прошлого визита → украинский (язык браузера не учитываем) */
 function initialLocale(): Locale {
   const fromUrl = new URLSearchParams(window.location.search).get('lang')
   if (isLocale(fromUrl)) return fromUrl
@@ -15,7 +15,7 @@ function initialLocale(): Locale {
   } catch {
     // хранилище может быть недоступно (приватный режим): просто идём дальше
   }
-  return navigator.language?.toLowerCase().startsWith('uk') ? 'uk' : defaultLocale
+  return defaultLocale
 }
 
 type LocaleState = { locale: Locale; content: Content; setLocale: (l: Locale) => void }
