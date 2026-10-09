@@ -9,7 +9,7 @@ const toMinutes = (time: string) => {
 
 const pad = (n: number) => String(n).padStart(2, '0')
 
-/** Время окончания занятия: «08:15» + 90 минут = «09:45» */
+/** Время окончания занятия: «08:15» + 60 минут = «09:15» */
 export function endTime(time: string, minutes: number): string {
   const end = (toMinutes(time) + minutes) % (24 * 60)
   return `${pad(Math.floor(end / 60))}:${pad(end % 60)}`

@@ -30,7 +30,7 @@ export const studio = {
 }
 
 /** Длительность занятия, минут */
-export const classMinutes = 90
+export const classMinutes = 60
 
 /** Расписание очно: день недели (1 = понедельник) и время */
 export const scheduleOffline: { day: number; time: string }[] = [
