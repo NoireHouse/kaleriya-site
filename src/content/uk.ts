@@ -1,8 +1,7 @@
 // Українська версія: переклад context/materials/landing.md. Змінюєш російський текст: онови й цей файл.
-import { contacts, formatSchedule, onlinePlatforms, scheduleOffline, scheduleOnline, studio } from './shared'
+import { contacts, onlinePlatforms } from './shared'
 import type { Content } from './types'
 
-const days = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Нд']
 
 export const uk: Content = {
   locale: 'uk',
@@ -21,7 +20,6 @@ export const uk: Content = {
     { id: 'practice', label: 'Практика', tone: 'surface' },
     { id: 'audience', label: 'Для кого', tone: 'surface' },
     { id: 'class', label: 'Заняття', tone: 'surface' },
-    { id: 'formats', label: 'Формати', tone: 'surface' },
     { id: 'schedule', label: 'Розклад', tone: 'surface' },
     { id: 'offer', label: 'Перше заняття', tone: 'depth' },
     { id: 'faq', label: 'Питання', tone: 'depth' },
@@ -99,46 +97,31 @@ export const uk: Content = {
     photoAlt: 'Силует акройоги на тлі заходу сонця над морем',
   },
 
-  formats: {
-    title: 'Де займатися',
-    pending: 'уточнюється',
-    items: [
-      {
-        icon: 'place',
-        name: 'Харків',
-        text: 'Наживо, у міні-групі від 2 до 5 людей, з увагою до кожного.',
-        rows: [
-          {
-            label: 'Адреса',
-            value: 'вул. Дмитра Антоненка, 49 (м. Ботанічний сад)',
-            link: { href: studio.mapHref, label: 'Відкрити на мапі' },
-          },
-          { label: 'Розклад', value: formatSchedule(scheduleOffline, days), link: { href: '#schedule', label: 'Весь розклад' } },
-        ],
-      },
-      {
-        icon: 'online',
-        name: 'Онлайн',
-        text: 'З будь-якого міста, практика у вас удома.',
-        rows: [
-          { label: 'Платформи', value: onlinePlatforms.join(', ') },
-          { label: 'Розклад', value: formatSchedule(scheduleOnline, days) },
-        ],
-      },
-    ],
-  },
 
   schedule: {
-    title: 'Розклад',
+    title: 'Розклад і адреса',
     lead: 'Ранкові заняття в Харкові. Кожне триває 1,5 години, перше безкоштовне.',
     days: ['Понеділок', 'Вівторок', 'Середа', 'Четвер', "П'ятниця", 'Субота', 'Неділя'],
     daysShort: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Нд'],
     until: 'до',
     next: 'найближче',
     format: 'Міні-група до 5 людей',
-    place: 'вул.\u00a0Дмитра Антоненка,\u00a049 (м.\u00a0Ботанічний\u00a0сад)',
-    mapLabel: 'Відкрити на мапі',
-    online: 'Онлайн-розклад уточнюється. Зателефонуйте, підберемо зручний час.',
+    address: {
+      label: 'Адреса',
+      street: 'вул.\u00a0Дмитра Антоненка,\u00a049',
+      area: 'Харків, метро «Ботанічний\u00a0сад»',
+      route: 'Прокласти маршрут',
+    },
+    mapTitle: 'Мапа: вул. Дмитра Антоненка, 49, Харків',
+    group: {
+      label: 'Наживо',
+      value: 'Міні-група від\u00a02 до\u00a05 людей',
+      note: 'Увага до кожного. Заняття триває 1,5 години.',
+    },
+    online: {
+      label: 'Онлайн',
+      note: 'Розклад онлайн уточнюється. Зателефонуйте, підберемо зручний час.',
+    },
   },
 
   offer: {

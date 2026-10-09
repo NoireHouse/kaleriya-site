@@ -1,8 +1,7 @@
 // Русская версия. Источник правды: context/materials/landing.md (1:1). Длинные тире не используем.
-import { contacts, formatSchedule, onlinePlatforms, scheduleOffline, scheduleOnline, studio } from './shared'
+import { contacts, onlinePlatforms } from './shared'
 import type { Content } from './types'
 
-const days = ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс']
 
 export const ru: Content = {
   locale: 'ru',
@@ -21,7 +20,6 @@ export const ru: Content = {
     { id: 'practice', label: 'Практика', tone: 'surface' },
     { id: 'audience', label: 'Для кого', tone: 'surface' },
     { id: 'class', label: 'Занятие', tone: 'surface' },
-    { id: 'formats', label: 'Форматы', tone: 'surface' },
     { id: 'schedule', label: 'Расписание', tone: 'surface' },
     { id: 'offer', label: 'Первое занятие', tone: 'depth' },
     { id: 'faq', label: 'Вопросы', tone: 'depth' },
@@ -99,46 +97,31 @@ export const ru: Content = {
     photoAlt: 'Силуэт акро-йоги на фоне заката над морем',
   },
 
-  formats: {
-    title: 'Где заниматься',
-    pending: 'уточняется',
-    items: [
-      {
-        icon: 'place',
-        name: 'Харьков',
-        text: 'Очно, в мини-группе от 2 до 5 человек, с вниманием к каждому.',
-        rows: [
-          {
-            label: 'Адрес',
-            value: 'ул. Дмитра Антоненка, 49 (м. Ботанический сад)',
-            link: { href: studio.mapHref, label: 'Открыть на карте' },
-          },
-          { label: 'Расписание', value: formatSchedule(scheduleOffline, days), link: { href: '#schedule', label: 'Всё расписание' } },
-        ],
-      },
-      {
-        icon: 'online',
-        name: 'Онлайн',
-        text: 'Из любого города, практика у вас дома.',
-        rows: [
-          { label: 'Платформы', value: onlinePlatforms.join(', ') },
-          { label: 'Расписание', value: formatSchedule(scheduleOnline, days) },
-        ],
-      },
-    ],
-  },
 
   schedule: {
-    title: 'Расписание',
+    title: 'Расписание и адрес',
     lead: 'Утренние занятия в Харькове. Каждое длится 1,5 часа, первое бесплатно.',
     days: ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'],
     daysShort: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
     until: 'до',
     next: 'ближайшее',
     format: 'Мини-группа до 5 человек',
-    place: 'ул.\u00a0Дмитра Антоненка,\u00a049 (м.\u00a0Ботанический\u00a0сад)',
-    mapLabel: 'Открыть на карте',
-    online: 'Онлайн-расписание уточняется. Позвоните, подберём удобное время.',
+    address: {
+      label: 'Адрес',
+      street: 'ул.\u00a0Дмитра Антоненка,\u00a049',
+      area: 'Харьков, метро «Ботанический\u00a0сад»',
+      route: 'Построить маршрут',
+    },
+    mapTitle: 'Карта: ул. Дмитра Антоненка, 49, Харьков',
+    group: {
+      label: 'Очно',
+      value: 'Мини-группа от\u00a02 до\u00a05 человек',
+      note: 'Внимание к каждому. Занятие длится 1,5 часа.',
+    },
+    online: {
+      label: 'Онлайн',
+      note: 'Расписание онлайн уточняется. Позвоните, подберём удобное время.',
+    },
   },
 
   offer: {

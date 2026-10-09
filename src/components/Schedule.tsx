@@ -1,12 +1,12 @@
 import { useEffect, useState } from 'react'
-import { MapPin, Sun, SunHorizon } from '@phosphor-icons/react'
-import { classMinutes, scheduleOffline, studio } from '../content'
+import { MapPin, NavigationArrow, Sun, SunHorizon, UsersThree, VideoCamera } from '@phosphor-icons/react'
+import { classMinutes, onlinePlatforms, scheduleOffline, studio } from '../content'
 import { useContent } from '../i18n/LocaleContext'
 import { endTime, isEarly, nextSlotIndex } from '../lib/schedule'
 
 /**
- * Расписание: неделя целиком, дни занятий выделены карточками.
- * Ближайшее занятие считается по времени Киева и обновляется раз в минуту.
+ * Расписание и адрес: всё, что нужно человеку, пришедшему по рекомендации.
+ * Неделя с ближайшим занятием (по времени Киева) и крупные карточки: адрес, карта, очно, онлайн.
  */
 export default function Schedule() {
   const { schedule } = useContent()
@@ -44,10 +44,8 @@ export default function Schedule() {
                 <span className="week__short" aria-hidden="true">{schedule.daysShort[d]}</span>
                 <span className="week__name">{dayName}</span>
                 {isNext && <span className="week__badge">{schedule.next}</span>}
-                <Glyph className="week__icon" size={28} weight="light" aria-hidden="true" />
-                <span className="week__time">
-                  <time>{slot.time}</time>
-                </span>
+                <Glyph className="week__icon" size={30} weight="light" aria-hidden="true" />
+                <span className="week__time"><time>{slot.time}</time></span>
                 <span className="week__until">
                   {schedule.until} <time>{endTime(slot.time, classMinutes)}</time>
                 </span>
@@ -57,14 +55,44 @@ export default function Schedule() {
           })}
         </ol>
 
-        <div className="schedule__place">
-          <MapPin size={24} weight="light" aria-hidden="true" />
-          <p>
-            {schedule.place}
-            <a className="text-link" href={studio.mapHref} target="_blank" rel="noopener noreferrer">{schedule.mapLabel}</a>
-          </p>
+        <div className="info-grid">
+          <article className="info-card info-card--address">
+            <MapPin className="info-card__icon" size={32} weight="light" aria-hidden="true" />
+            <h3 className="info-card__label">{schedule.address.label}</h3>
+            <p className="info-card__value">{schedule.address.street}</p>
+            <p className="info-card__note">{schedule.address.area}</p>
+            <a className="btn-outline" href={studio.routeHref} target="_blank" rel="noopener noreferrer">
+              <NavigationArrow size={20} weight="light" aria-hidden="true" />
+              {schedule.address.route}
+            </a>
+          </article>
+
+          <figure className="info-card info-card--map">
+            <iframe
+              src={studio.embedSrc}
+              title={schedule.mapTitle}
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              allowFullScreen
+            />
+          </figure>
+
+          <article className="info-card info-card--group">
+            <UsersThree className="info-card__icon" size={32} weight="light" aria-hidden="true" />
+            <h3 className="info-card__label">{schedule.group.label}</h3>
+            <p className="info-card__value">{schedule.group.value}</p>
+            <p className="info-card__note">{schedule.group.note}</p>
+          </article>
+
+          <article className="info-card info-card--online">
+            <VideoCamera className="info-card__icon" size={32} weight="light" aria-hidden="true" />
+            <h3 className="info-card__label">{schedule.online.label}</h3>
+            <ul className="info-card__chips">
+              {onlinePlatforms.map((p) => <li key={p}>{p}</li>)}
+            </ul>
+            <p className="info-card__note">{schedule.online.note}</p>
+          </article>
         </div>
-        <p className="schedule__online">{schedule.online}</p>
       </div>
     </section>
   )

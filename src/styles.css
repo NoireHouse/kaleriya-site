@@ -370,37 +370,18 @@ h3 { font-size: 1.2rem; font-weight: 400; letter-spacing: -0.01em; }
   .flow__text { grid-column: 1; }
 }
 
-/* ---------- Форматы: две колонки ---------- */
-.formats { background: linear-gradient(180deg, var(--s5), var(--s5)); padding: var(--pad-y) 0; }
-.formats__pair { display: grid; gap: 56px; margin-top: 48px; }
-@media (min-width: 900px) { .formats__pair { grid-template-columns: 1fr 1fr; gap: 96px; } }
-.formats__icon { color: var(--cell-deep); margin-bottom: 20px; }
-@media (prefers-color-scheme: dark) { .formats__icon { color: var(--accent); } }
-.formats__name { font-size: clamp(2.2rem, 5vw, 3.6rem); letter-spacing: -0.05em; margin-bottom: 0.3em; }
-.formats__item > p { color: var(--ink-soft); max-width: 30ch; }
-.formats__facts { margin: 28px 0 0; border-top: 1px solid var(--line); }
-.formats__facts div { display: grid; gap: 2px; padding-top: 16px; }
-.formats__facts dt { font-weight: 600; }
-.formats__facts dd { margin: 0; }
-.formats__link { display: inline-flex; align-items: center; min-height: 44px; padding: 0; font-size: 0.95rem; }
-.formats__facts dd .formats__link { display: flex; width: fit-content; }
-@media (min-width: 600px) {
-  .formats__facts div { grid-template-columns: 7.5rem 1fr; gap: 16px; }
-}
-.is-pending { color: var(--ink-soft); }
-
 /* ---------- Расписание: неделя целиком ---------- */
 .schedule {
   background: linear-gradient(180deg, var(--s5), var(--s5));
-  padding: calc(var(--pad-y) * 0.6) 0 calc(var(--pad-y) + var(--arc));
+  padding: var(--pad-y) 0 calc(var(--pad-y) + var(--arc));
 }
-.schedule__lead { color: var(--ink-soft); max-width: 40ch; font-size: 1.1rem; }
+.schedule__lead { color: var(--ink-soft); max-width: 40ch; font-size: 1.2rem; }
 
 /* Телефон: вертикальный ритм недели, дни отдыха тонкими строками, дни занятий карточками */
 .week { list-style: none; margin: 36px 0 0; padding: 0; display: grid; gap: 8px; }
 .week__day--rest {
   display: flex; align-items: center; min-height: 34px; padding: 0 18px;
-  border-radius: var(--r-sm); border: 1px dashed var(--line); color: var(--ink-soft); font-size: 0.85rem;
+  border-radius: var(--r-sm); border: 1px dashed var(--line); color: var(--ink-soft); font-size: 0.95rem;
 }
 .week__day--class {
   position: relative; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 2px 16px;
@@ -408,14 +389,14 @@ h3 { font-size: 1.2rem; font-weight: 400; letter-spacing: -0.01em; }
   box-shadow: 0 24px 48px -36px var(--shadow);
 }
 .week__day--class .week__short { display: none; }
-.week__name { grid-column: 1; font-weight: 600; font-size: 1.1rem; }
+.week__name { grid-column: 1; font-weight: 600; font-size: 1.2rem; }
 .week__icon { grid-column: 2; grid-row: 1; justify-self: end; color: var(--cell-deep); }
 .week__time { grid-column: 1 / -1; font-family: var(--font-display); font-weight: 300; font-size: 2.6rem; letter-spacing: -0.04em; line-height: 1.05; margin-top: 6px; }
-.week__until { grid-column: 1; color: var(--ink-soft); }
-.week__format { grid-column: 1 / -1; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); font-size: 0.92rem; color: var(--ink-soft); }
+.week__until { grid-column: 1; color: var(--ink-soft); font-size: 1.1rem; }
+.week__format { grid-column: 1 / -1; margin-top: 12px; padding-top: 12px; border-top: 1px solid var(--line); font-size: 1.05rem; color: var(--ink-soft); }
 .week__badge {
-  position: absolute; top: -11px; left: 20px; padding: 3px 12px; border-radius: 999px;
-  background: var(--accent); color: var(--on-accent); font-size: 0.8rem; font-weight: 600;
+  position: absolute; top: -12px; left: 20px; padding: 4px 14px; border-radius: 999px;
+  background: var(--accent); color: var(--on-accent); font-size: 0.9rem; font-weight: 600;
 }
 .week__day--class.is-next { outline: 1.5px solid var(--accent); outline-offset: -1.5px; }
 @media (prefers-color-scheme: dark) { .week__icon { color: var(--accent); } }
@@ -425,18 +406,54 @@ h3 { font-size: 1.2rem; font-weight: 400; letter-spacing: -0.01em; }
   .week { display: flex; gap: 10px; align-items: stretch; margin-top: 48px; }
   .week__day--rest { flex: 0.45; min-height: 260px; align-items: flex-start; justify-content: center; padding: 18px 0; }
   .week__day--class { flex: 1.5; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding: 22px 22px 20px; }
-  .week__day--class .week__short { display: block; color: var(--ink-soft); font-size: 0.85rem; }
+  .week__day--class .week__short { display: block; color: var(--ink-soft); font-size: 0.95rem; }
   .week__icon { margin: 14px 0 2px; }
   .week__time { font-size: clamp(2.2rem, 3.4vw, 3rem); margin-top: 0; }
   .week__format { margin-top: auto; width: 100%; }
 }
 
-.schedule__place { display: flex; gap: 14px; align-items: flex-start; margin-top: 40px; }
-.schedule__place svg { flex: none; margin-top: 3px; color: var(--cell-deep); }
-@media (prefers-color-scheme: dark) { .schedule__place svg { color: var(--accent); } }
-.schedule__place p { margin: 0; }
-.schedule__place .text-link { display: flex; width: fit-content; min-height: 44px; align-items: center; padding: 0; }
-.schedule__online { margin: 8px 0 0 38px; color: var(--ink-soft); max-width: 46ch; }
+/* Карточки под неделей: адрес, карта, очно, онлайн. Крупный текст: главное здесь должно читаться сразу. */
+.info-grid { display: grid; gap: 16px; margin-top: 16px; }
+.info-card {
+  margin: 0; padding: 26px 24px; border-radius: var(--r-lg); background: var(--cell);
+  box-shadow: 0 24px 48px -36px var(--shadow);
+}
+.info-card__icon { color: var(--cell-deep); margin-bottom: 14px; }
+@media (prefers-color-scheme: dark) { .info-card__icon { color: var(--accent); } }
+.info-card__label { font-family: var(--font-text); font-size: 1rem; font-weight: 600; letter-spacing: 0; color: var(--ink-soft); margin: 0 0 6px; }
+.info-card__value {
+  font-family: var(--font-display); font-weight: 400; letter-spacing: -0.025em;
+  font-size: clamp(1.4rem, 1rem + 1.6vw, 1.9rem); line-height: 1.2; margin: 0 0 10px;
+}
+.info-card__note { font-size: 1.1rem; color: var(--ink-soft); margin: 0; max-width: 34ch; }
+.info-card .btn-outline { margin-top: 22px; }
+.info-card__chips { list-style: none; margin: 4px 0 14px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+.info-card__chips li {
+  padding: 8px 16px; border-radius: 999px; background: var(--s2);
+  font-family: var(--font-display); font-weight: 400; font-size: 1.1rem; letter-spacing: -0.01em;
+}
+.info-card--map { padding: 0; overflow: hidden; min-height: 280px; background: var(--s3); }
+.info-card--map iframe { display: block; width: 100%; height: 100%; min-height: 280px; border: 0; filter: saturate(0.75); }
+.info-card--group { background: var(--cell-deep); color: var(--foam); }
+.info-card--group .info-card__icon,
+.info-card--group .info-card__label,
+.info-card--group .info-card__note { color: var(--foam-soft); }
+@media (min-width: 760px) {
+  .info-grid { grid-template-columns: repeat(12, 1fr); }
+  .info-card--address { grid-column: 1 / 6; }
+  .info-card--map { grid-column: 6 / 13; }
+  .info-card--group { grid-column: 1 / 7; }
+  .info-card--online { grid-column: 7 / 13; }
+  .info-card { padding: 32px; }
+}
+
+.btn-outline {
+  display: inline-flex; align-items: center; gap: 10px; min-height: 48px; padding: 10px 22px; border-radius: 999px;
+  border: 1.5px solid currentColor; font-weight: 600; text-decoration: none;
+  transition: background-color 0.2s var(--ease), transform 0.2s var(--ease);
+}
+.btn-outline:hover { background: color-mix(in srgb, currentColor 10%, transparent); }
+.btn-outline:active { transform: scale(0.98); }
 
 /* ---------- Нижняя панель записи (только телефон) ---------- */
 .mobile-bar {

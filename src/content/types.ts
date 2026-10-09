@@ -7,8 +7,6 @@ export type Tone = 'surface' | 'depth'
 
 export type Section = { id: string; label: string; tone: Tone }
 
-export type FactRow = { label: string; value: string | null; link?: { href: string; label: string } }
-
 export type Content = {
   locale: Locale
   brand: string
@@ -54,11 +52,6 @@ export type Content = {
     steps: { name: string; text: string }[]
     photoAlt: string
   }
-  formats: {
-    title: string
-    pending: string
-    items: { icon: 'place' | 'online'; name: string; text: string; rows: FactRow[] }[]
-  }
   schedule: {
     title: string
     lead: string
@@ -69,9 +62,10 @@ export type Content = {
     until: string
     next: string
     format: string
-    place: string
-    mapLabel: string
-    online: string
+    address: { label: string; street: string; area: string; route: string }
+    mapTitle: string
+    group: { label: string; value: string; note: string }
+    online: { label: string; note: string }
   }
   offer: { title: string; text: string; steps: string[] }
   faq: { title: string; items: { q: string; a: string }[] }

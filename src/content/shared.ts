@@ -19,8 +19,12 @@ export const contacts = {
 
 export const telHref = (phone: string) => `tel:${phone.replace(/[^+\d]/g, '')}`
 
+const studioQuery = encodeURIComponent('Харків, вулиця Дмитра Антоненка, 49')
+
 export const studio = {
-  mapHref: 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('Харків, вулиця Дмитра Антоненка, 49'),
+  mapHref: `https://www.google.com/maps/search/?api=1&query=${studioQuery}`,
+  routeHref: `https://www.google.com/maps/dir/?api=1&destination=${studioQuery}`,
+  embedSrc: `https://maps.google.com/maps?q=${studioQuery}&z=16&output=embed`,
 }
 
 /** Длительность занятия, минут */

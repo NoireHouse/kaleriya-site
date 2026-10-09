@@ -3,7 +3,7 @@ import { uk } from './uk'
 import type { Content, Locale } from './types'
 
 export * from './types'
-export { classMinutes, contacts, photos, scheduleOffline, studio, telHref } from './shared'
+export { classMinutes, contacts, onlinePlatforms, photos, scheduleOffline, studio, telHref } from './shared'
 
 /** Конфигурация текстов: один объект на язык, одинаковая структура (тип Content) */
 export const dictionaries: Record<Locale, Content> = { ru, uk }

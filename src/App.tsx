@@ -9,7 +9,6 @@ import About from './components/About'
 import Practice from './components/Practice'
 import Audience from './components/Audience'
 import ClassFlow from './components/ClassFlow'
-import Formats from './components/Formats'
 import Schedule from './components/Schedule'
 import MobileBar from './components/MobileBar'
 import Offer from './components/Offer'
@@ -32,7 +31,6 @@ export default function App() {
         <Practice />
         <Audience />
         <ClassFlow />
-        <Formats />
         <Schedule />
         <Offer />
         <Faq />
