@@ -23,6 +23,9 @@ export const studio = {
   mapHref: 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent('Харків, вулиця Дмитра Антоненка, 49'),
 }
 
+/** Длительность занятия, минут */
+export const classMinutes = 90
+
 /** Расписание очно: день недели (1 = понедельник) и время */
 export const scheduleOffline: { day: number; time: string }[] = [
   { day: 2, time: '08:15' },

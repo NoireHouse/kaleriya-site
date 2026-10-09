@@ -21,6 +21,8 @@ export type Content = {
   /** Единая подпись для всех кнопок записи: одно намерение, одна формулировка */
   cta: { label: string; href: string }
   sections: Section[]
+  /** Пункт меню в шапке: быстрый переход к расписанию */
+  nav: { href: string; label: string }
 
   hero: {
     kicker: string
@@ -56,6 +58,20 @@ export type Content = {
     title: string
     pending: string
     items: { icon: 'place' | 'online'; name: string; text: string; rows: FactRow[] }[]
+  }
+  schedule: {
+    title: string
+    lead: string
+    /** Полные названия дней недели, с понедельника */
+    days: string[]
+    /** Короткие названия дней для полосы недели */
+    daysShort: string[]
+    until: string
+    next: string
+    format: string
+    place: string
+    mapLabel: string
+    online: string
   }
   offer: { title: string; text: string; steps: string[] }
   faq: { title: string; items: { q: string; a: string }[] }

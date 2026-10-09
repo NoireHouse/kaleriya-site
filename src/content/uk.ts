@@ -22,10 +22,12 @@ export const uk: Content = {
     { id: 'audience', label: 'Для кого', tone: 'surface' },
     { id: 'class', label: 'Заняття', tone: 'surface' },
     { id: 'formats', label: 'Формати', tone: 'surface' },
+    { id: 'schedule', label: 'Розклад', tone: 'surface' },
     { id: 'offer', label: 'Перше заняття', tone: 'depth' },
     { id: 'faq', label: 'Питання', tone: 'depth' },
     { id: 'contact', label: 'Запис', tone: 'depth' },
   ],
+  nav: { href: '#schedule', label: 'Розклад' },
 
   hero: {
     kicker: 'Хатха і Пурна йога для початківців',
@@ -111,7 +113,7 @@ export const uk: Content = {
             value: 'вул. Дмитра Антоненка, 49 (м. Ботанічний сад)',
             link: { href: studio.mapHref, label: 'Відкрити на мапі' },
           },
-          { label: 'Розклад', value: formatSchedule(scheduleOffline, days) },
+          { label: 'Розклад', value: formatSchedule(scheduleOffline, days), link: { href: '#schedule', label: 'Весь розклад' } },
         ],
       },
       {
@@ -124,6 +126,19 @@ export const uk: Content = {
         ],
       },
     ],
+  },
+
+  schedule: {
+    title: 'Розклад',
+    lead: 'Ранкові заняття в Харкові. Кожне триває 1,5 години, перше безкоштовне.',
+    days: ['Понеділок', 'Вівторок', 'Середа', 'Четвер', "П'ятниця", 'Субота', 'Неділя'],
+    daysShort: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Нд'],
+    until: 'до',
+    next: 'найближче',
+    format: 'Міні-група до 5 людей',
+    place: 'вул.\u00a0Дмитра Антоненка,\u00a049 (м.\u00a0Ботанічний\u00a0сад)',
+    mapLabel: 'Відкрити на мапі',
+    online: 'Онлайн-розклад уточнюється. Зателефонуйте, підберемо зручний час.',
   },
 
   offer: {

@@ -22,10 +22,12 @@ export const ru: Content = {
     { id: 'audience', label: 'Для кого', tone: 'surface' },
     { id: 'class', label: 'Занятие', tone: 'surface' },
     { id: 'formats', label: 'Форматы', tone: 'surface' },
+    { id: 'schedule', label: 'Расписание', tone: 'surface' },
     { id: 'offer', label: 'Первое занятие', tone: 'depth' },
     { id: 'faq', label: 'Вопросы', tone: 'depth' },
     { id: 'contact', label: 'Запись', tone: 'depth' },
   ],
+  nav: { href: '#schedule', label: 'Расписание' },
 
   hero: {
     kicker: 'Хатха и Пурна йога для начинающих',
@@ -111,7 +113,7 @@ export const ru: Content = {
             value: 'ул. Дмитра Антоненка, 49 (м. Ботанический сад)',
             link: { href: studio.mapHref, label: 'Открыть на карте' },
           },
-          { label: 'Расписание', value: formatSchedule(scheduleOffline, days) },
+          { label: 'Расписание', value: formatSchedule(scheduleOffline, days), link: { href: '#schedule', label: 'Всё расписание' } },
         ],
       },
       {
@@ -124,6 +126,19 @@ export const ru: Content = {
         ],
       },
     ],
+  },
+
+  schedule: {
+    title: 'Расписание',
+    lead: 'Утренние занятия в Харькове. Каждое длится 1,5 часа, первое бесплатно.',
+    days: ['Понедельник', 'Вторник', 'Среда', 'Четверг', 'Пятница', 'Суббота', 'Воскресенье'],
+    daysShort: ['Пн', 'Вт', 'Ср', 'Чт', 'Пт', 'Сб', 'Вс'],
+    until: 'до',
+    next: 'ближайшее',
+    format: 'Мини-группа до 5 человек',
+    place: 'ул.\u00a0Дмитра Антоненка,\u00a049 (м.\u00a0Ботанический\u00a0сад)',
+    mapLabel: 'Открыть на карте',
+    online: 'Онлайн-расписание уточняется. Позвоните, подберём удобное время.',
   },
 
   offer: {

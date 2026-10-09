@@ -10,6 +10,8 @@ import Practice from './components/Practice'
 import Audience from './components/Audience'
 import ClassFlow from './components/ClassFlow'
 import Formats from './components/Formats'
+import Schedule from './components/Schedule'
+import MobileBar from './components/MobileBar'
 import Offer from './components/Offer'
 import Faq from './components/Faq'
 import Contact from './components/Contact'
@@ -22,7 +24,7 @@ export default function App() {
   return (
     <>
       <a className="skip-link" href="#main">{content.skipLink}</a>
-      <Header tone={tone} />
+      <Header tone={tone} active={active} />
       <DepthRail active={active} tone={tone} />
       <main id="main">
         <Hero />
@@ -31,10 +33,12 @@ export default function App() {
         <Audience />
         <ClassFlow />
         <Formats />
+        <Schedule />
         <Offer />
         <Faq />
         <Contact />
       </main>
+      <MobileBar hidden={active === 'top' || active === 'contact'} />
       <footer className="footer">
         <div className="container footer__inner">
           <span>{content.footer}</span>

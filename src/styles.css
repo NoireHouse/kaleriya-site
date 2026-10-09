@@ -157,6 +157,16 @@ h3 { font-size: 1.2rem; font-weight: 400; letter-spacing: -0.01em; }
 .header__inner { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 68px; }
 .header__brand { font-family: var(--font-display); font-weight: 400; font-size: 1.1rem; letter-spacing: -0.01em; text-decoration: none; }
 .header__actions { display: flex; align-items: center; gap: 8px; }
+.header__nav {
+  display: inline-flex; align-items: center; min-height: 44px; padding: 0 12px;
+  font-weight: 600; font-size: 0.95rem; text-decoration: none; border-radius: 999px;
+  transition: background-color 0.2s var(--ease);
+}
+.header__nav:hover { background: color-mix(in srgb, currentColor 10%, transparent); }
+.header__nav[aria-current] { text-decoration: underline; text-underline-offset: 6px; text-decoration-thickness: 1.5px; text-decoration-color: var(--accent); }
+/* На телефоне кнопка записи живёт в нижней панели, в шапке остаются бренд, расписание и язык */
+.header__cta { display: none; }
+@media (min-width: 640px) { .header__cta { display: inline-flex; } }
 .lang-switch {
   display: inline-grid; place-items: center; min-width: 44px; min-height: 44px; padding: 0 10px; border-radius: 999px;
   font: inherit; font-size: 0.85rem; font-weight: 600; letter-spacing: 0.04em; color: inherit; cursor: pointer;
@@ -165,16 +175,10 @@ h3 { font-size: 1.2rem; font-weight: 400; letter-spacing: -0.01em; }
 }
 .lang-switch:hover { opacity: 1; }
 .lang-switch:active { transform: scale(0.95); }
-/* На экранах уже 360px переключатель языка живёт только в подвале, чтобы шапка не ломалась */
-@media (max-width: 419px) {
-  .header__inner { gap: 8px; }
-  .header__brand { font-size: 0.95rem; }
-  .header__actions { gap: 6px; }
-  .header .btn--small { padding: 8px 12px; font-size: 0.82rem; }
-}
 @media (max-width: 359px) {
-  .header .lang-switch { display: none; }
-  .header .btn--small { padding: 8px 14px; font-size: 0.85rem; }
+  .header__brand { font-size: 0.95rem; }
+  .header__actions { gap: 4px; }
+  .header__nav { padding: 0 8px; }
 }
 
 /* ---------- Шкала глубины (широкие экраны) ---------- */
@@ -265,9 +269,10 @@ h3 { font-size: 1.2rem; font-weight: 400; letter-spacing: -0.01em; }
 /* ---------- Обо мне: фото и наложенная панель ---------- */
 .about { background: linear-gradient(180deg, var(--s2), var(--s3)); padding: var(--pad-y) 0 calc(var(--pad-y) + 24px); }
 .about__stage { display: grid; }
+.about__stage > * { min-width: 0; }
 .about__photo img { width: 100%; aspect-ratio: 4 / 3; object-fit: cover; border-radius: var(--r-lg); }
 .about__panel {
-  position: relative; margin: -56px 12px 0; padding: 32px 28px;
+  position: relative; margin: -56px 8px 0; padding: 28px 22px;
   background: var(--cell); border-radius: var(--r-lg);
   box-shadow: 0 40px 80px -48px var(--shadow), inset 0 1px 0 rgba(255, 255, 255, 0.5);
 }
@@ -275,7 +280,8 @@ h3 { font-size: 1.2rem; font-weight: 400; letter-spacing: -0.01em; }
 .about__name span { font-family: var(--font-text); font-size: 1rem; font-weight: 500; letter-spacing: 0; color: var(--ink-soft); }
 .about__quote {
   margin: 0 0 1.2em; font-family: var(--font-display); font-weight: 300;
-  font-size: clamp(1.25rem, 2.2vw, 1.7rem); line-height: 1.3; letter-spacing: -0.02em;
+  font-size: clamp(1.1rem, 0.7rem + 2vw, 1.7rem); line-height: 1.3; letter-spacing: -0.02em;
+  hyphens: auto; overflow-wrap: break-word;
 }
 .about__facts { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin: 0 0 1.4em; }
 .about__facts div { padding: 14px 16px; border-radius: var(--r-sm); background: var(--s2); }
@@ -339,9 +345,10 @@ h3 { font-size: 1.2rem; font-weight: 400; letter-spacing: -0.01em; }
 /* ---------- Ход занятия: таймлайн погружения ---------- */
 .flow-section { background: linear-gradient(180deg, var(--s4), var(--s5)); padding: var(--pad-y) 0; }
 .flow-section__head { display: flex; align-items: center; justify-content: space-between; gap: 32px; }
-.flow-section__head h2 { margin-bottom: 0.3em; }
+.flow-section__head > div { min-width: 0; }
+.flow-section__head h2 { margin-bottom: 0.3em; hyphens: auto; overflow-wrap: break-word; }
 .flow-section__duration { margin: 0; font-weight: 600; color: var(--ink-soft); }
-.flow-section__photo { flex: none; width: clamp(96px, 18vw, 200px); aspect-ratio: 1; border-radius: 50%; overflow: hidden; }
+.flow-section__photo { flex: none; width: clamp(80px, 18vw, 200px); aspect-ratio: 1; border-radius: 50%; overflow: hidden; }
 .flow-section__photo img { width: 100%; height: 100%; object-fit: cover; object-position: 55% 40%; }
 
 .flow { list-style: none; margin: 56px 0 0; padding: 0; display: grid; gap: 36px; position: relative; }
@@ -364,7 +371,7 @@ h3 { font-size: 1.2rem; font-weight: 400; letter-spacing: -0.01em; }
 }
 
 /* ---------- Форматы: две колонки ---------- */
-.formats { background: linear-gradient(180deg, var(--s5), var(--s5)); padding: var(--pad-y) 0 calc(var(--pad-y) + var(--arc)); }
+.formats { background: linear-gradient(180deg, var(--s5), var(--s5)); padding: var(--pad-y) 0; }
 .formats__pair { display: grid; gap: 56px; margin-top: 48px; }
 @media (min-width: 900px) { .formats__pair { grid-template-columns: 1fr 1fr; gap: 96px; } }
 .formats__icon { color: var(--cell-deep); margin-bottom: 20px; }
@@ -381,6 +388,67 @@ h3 { font-size: 1.2rem; font-weight: 400; letter-spacing: -0.01em; }
   .formats__facts div { grid-template-columns: 7.5rem 1fr; gap: 16px; }
 }
 .is-pending { color: var(--ink-soft); }
+
+/* ---------- Расписание: неделя целиком ---------- */
+.schedule {
+  background: linear-gradient(180deg, var(--s5), var(--s5));
+  padding: calc(var(--pad-y) * 0.6) 0 calc(var(--pad-y) + var(--arc));
+}
+.schedule__lead { color: var(--ink-soft); max-width: 40ch; font-size: 1.1rem; }
+
+/* Телефон: вертикальный ритм недели, дни отдыха тонкими строками, дни занятий карточками */
+.week { list-style: none; margin: 36px 0 0; padding: 0; display: grid; gap: 8px; }
+.week__day--rest {
+  display: flex; align-items: center; min-height: 34px; padding: 0 18px;
+  border-radius: var(--r-sm); border: 1px dashed var(--line); color: var(--ink-soft); font-size: 0.85rem;
+}
+.week__day--class {
+  position: relative; display: grid; grid-template-columns: 1fr auto; align-items: center; gap: 2px 16px;
+  padding: 20px 20px 18px; border-radius: var(--r-lg); background: var(--cell);
+  box-shadow: 0 24px 48px -36px var(--shadow);
+}
+.week__day--class .week__short { display: none; }
+.week__name { grid-column: 1; font-weight: 600; font-size: 1.1rem; }
+.week__icon { grid-column: 2; grid-row: 1; justify-self: end; color: var(--cell-deep); }
+.week__time { grid-column: 1 / -1; font-family: var(--font-display); font-weight: 300; font-size: 2.6rem; letter-spacing: -0.04em; line-height: 1.05; margin-top: 6px; }
+.week__until { grid-column: 1; color: var(--ink-soft); }
+.week__format { grid-column: 1 / -1; margin-top: 10px; padding-top: 10px; border-top: 1px solid var(--line); font-size: 0.92rem; color: var(--ink-soft); }
+.week__badge {
+  position: absolute; top: -11px; left: 20px; padding: 3px 12px; border-radius: 999px;
+  background: var(--accent); color: var(--on-accent); font-size: 0.8rem; font-weight: 600;
+}
+.week__day--class.is-next { outline: 1.5px solid var(--accent); outline-offset: -1.5px; }
+@media (prefers-color-scheme: dark) { .week__icon { color: var(--accent); } }
+
+/* Десктоп: неделя в строку; дни занятий шире, дни отдыха узкие столбцы */
+@media (min-width: 900px) {
+  .week { display: flex; gap: 10px; align-items: stretch; margin-top: 48px; }
+  .week__day--rest { flex: 0.45; min-height: 260px; align-items: flex-start; justify-content: center; padding: 18px 0; }
+  .week__day--class { flex: 1.5; display: flex; flex-direction: column; align-items: flex-start; gap: 4px; padding: 22px 22px 20px; }
+  .week__day--class .week__short { display: block; color: var(--ink-soft); font-size: 0.85rem; }
+  .week__icon { margin: 14px 0 2px; }
+  .week__time { font-size: clamp(2.2rem, 3.4vw, 3rem); margin-top: 0; }
+  .week__format { margin-top: auto; width: 100%; }
+}
+
+.schedule__place { display: flex; gap: 14px; align-items: flex-start; margin-top: 40px; }
+.schedule__place svg { flex: none; margin-top: 3px; color: var(--cell-deep); }
+@media (prefers-color-scheme: dark) { .schedule__place svg { color: var(--accent); } }
+.schedule__place p { margin: 0; }
+.schedule__place .text-link { display: flex; width: fit-content; min-height: 44px; align-items: center; padding: 0; }
+.schedule__online { margin: 8px 0 0 38px; color: var(--ink-soft); max-width: 46ch; }
+
+/* ---------- Нижняя панель записи (только телефон) ---------- */
+.mobile-bar {
+  position: fixed; left: 0; right: 0; bottom: 0; z-index: 20;
+  padding: 12px var(--gutter) calc(12px + env(safe-area-inset-bottom));
+  pointer-events: none;
+  transition: transform 0.35s var(--ease), opacity 0.35s var(--ease);
+}
+.mobile-bar .btn { width: 100%; pointer-events: auto; box-shadow: 0 18px 40px -14px rgba(15, 42, 46, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.35); }
+.mobile-bar.is-hidden { transform: translateY(110%); opacity: 0; }
+.mobile-bar.is-hidden .btn { pointer-events: none; }
+@media (min-width: 640px) { .mobile-bar { display: none; } }
 
 /* ---------- Глубина: оффер, вопросы, запись ---------- */
 .offer,
